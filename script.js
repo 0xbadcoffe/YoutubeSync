@@ -10,6 +10,10 @@ var config = {
 };
 firebase.initializeApp(config);
 
-function pushData(roomName, timeIntoVideo, ) {
-
+//Main homepage
+function joinRoom() {
+    var div = document.createElement("div");
+    div.id = "roomBox"
+    var joinRoomButton = document.createElement("button")
+    joinRoomButton.className = "buttons1"
 }
