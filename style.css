@@ -8,8 +8,12 @@ body {
     background-color: rgba(0, 0, 0, .9);
 }
 
-h1 {
-    font-family: "Roboto";
-    font-weight: lighter;
-    color: white;
+#roomBox {
+    height: 300;
+    width: 300;
+    background-color: #FAFAFA
 }
+
+.buttons1 {}
+
+.buttons1:hover {}
