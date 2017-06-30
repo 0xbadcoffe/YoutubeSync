@@ -27,8 +27,9 @@ function joinRoom() {
     welcomeBanner.innerText = "Welcome";
     welcomeBanner.className = "welcome";
 
+    div.appendChild(welcomeBanner);
     div.appendChild(createRoomButton);
     div.appendChild(joinRoomButton);
-    div.appendChild(welcomeBanner);
+
     document.getElementsByTagName('body')[0].appendChild(div);
 }
