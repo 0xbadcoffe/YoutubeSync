@@ -10,4 +10,6 @@ var config = {
 };
 firebase.initializeApp(config);
 
-alert("fuck you");
+function pushData(roomName, timeIntoVideo, ) {
+
+}
