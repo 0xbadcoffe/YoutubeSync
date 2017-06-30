@@ -23,7 +23,12 @@ function joinRoom() {
     createRoomButton.innerText = "Create a Room";
     createRoomButton.className = "buttons1";
 
+    var welcomeBanner = document.createElement("h1");
+    welcomeBanner.innerText = "Welcome";
+    welcomeBanner.className = "welcome";
+
     div.appendChild(createRoomButton);
     div.appendChild(joinRoomButton);
+    div.appendChild(welcomeBanner);
     document.getElementsByTagName('body')[0].appendChild(div);
 }
