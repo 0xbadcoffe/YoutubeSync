@@ -65,3 +65,11 @@ function clearAll() {
     }
 
 }
+
+function createRoom() {
+
+}
+
+function joinRoom() {
+
+}
