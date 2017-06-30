@@ -12,8 +12,11 @@ firebase.initializeApp(config);
 
 //Main homepage
 function joinRoom() {
+    alert('shit');
     var div = document.createElement("div");
     div.id = "roomBox"
     var joinRoomButton = document.createElement("button")
     joinRoomButton.className = "buttons1"
+    div.appendChild(joinRoomButton);
+    document.getElementsByTagName('body')[0].appendChild(div);
 }

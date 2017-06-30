@@ -9,9 +9,10 @@ body {
 }
 
 #roomBox {
-    height: 300;
-    width: 300;
-    background-color: #FAFAFA
+    height: 300px;
+    width: 300px;
+    background-color: #FAFAFA;
+    margin: 10px auto;
 }
 
 .buttons1 {}
