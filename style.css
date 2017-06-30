@@ -11,10 +11,29 @@ body {
 #roomBox {
     height: 300px;
     width: 300px;
-    background-color: #FAFAFA;
-    margin: 10px auto;
+    background-color: rgba(255, 255, 255, 0.08);
+    margin: 30px auto 0px;
+    text-align: center;
+    padding: 20px;
 }
 
-.buttons1 {}
+.welcome {
+    letter-spacing: 0.5px;
+    font-size: 60px;
+    margin-bottom: 40px;
+    margin-top: 0px;
+}
+
+.buttons1 {
+    border: none;
+    color: rgba(0, 0, 0, .9);
+    width: 200px;
+    height: 50px;
+    border-radius: 0px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 40px;
+    font-size: 20px;
+}
 
 .buttons1:hover {}
