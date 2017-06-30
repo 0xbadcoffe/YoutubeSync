@@ -1,5 +1,4 @@
 //firebase initialization
-
 var config = {
     apiKey: "AIzaSyAH7CQ-JuB5KFJqFGrQXIF_NxMp-glz6PY",
     authDomain: "music-sync-8212d.firebaseapp.com",
@@ -10,6 +9,9 @@ var config = {
 };
 firebase.initializeApp(config);
 
+//global vars
+var body = document.getElementsByTagName('body')[0];
+
 //Main homepage
 function joinRoom() {
     var div = document.createElement("div");
@@ -17,11 +19,13 @@ function joinRoom() {
 
     var joinRoomButton = document.createElement("button")
     joinRoomButton.innerText = "Join a Room";
+    joinRoomButton.onclick = clearAll;
     joinRoomButton.className = "buttons1";
 
     var createRoomButton = document.createElement("button");
     createRoomButton.innerText = "Create a Room";
     createRoomButton.className = "buttons1";
+    createRoomButton.onclick = clearAll;
 
     var welcomeBanner = document.createElement("h1");
     welcomeBanner.innerText = "Welcome";
@@ -32,4 +36,14 @@ function joinRoom() {
     div.appendChild(joinRoomButton);
 
     document.getElementsByTagName('body')[0].appendChild(div);
+}
+
+
+function clearAll() {
+    body.innerHTML = "";
+
+    var logo = document.createElement("h1");
+    logo.innerText = "DJSync";
+    body.appendChild(logo);
+
 }
