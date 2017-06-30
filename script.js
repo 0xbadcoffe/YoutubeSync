@@ -13,7 +13,7 @@ firebase.initializeApp(config);
 var body = document.getElementsByTagName('body')[0];
 
 //Main homepage
-function joinRoom() {
+function welcomeButtonsPressed() {
     var div = document.createElement("div");
     div.id = "roomBox"
 
@@ -67,9 +67,10 @@ function clearAll() {
 }
 
 function createRoom() {
-
+    console.log("nothing");
 }
 
 function joinRoom() {
+    console.log("nothing");
 
 }
