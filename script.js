@@ -12,7 +12,6 @@ firebase.initializeApp(config);
 
 //Main homepage
 function joinRoom() {
-    alert('shit');
     var div = document.createElement("div");
     div.id = "roomBox"
 
