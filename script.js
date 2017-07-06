@@ -157,7 +157,7 @@ function bootstrapScripts(templateName) {
 function bootstrap() {
     console.log('YoutubeSync Bootstrapping...');
     firebaseInit();
-    appendTemplate('joinRoomPrompt');
+    appendTemplate('home');
 }
 
 function onSomeBtnClicked() {
