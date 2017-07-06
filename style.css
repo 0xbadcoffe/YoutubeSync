@@ -31,9 +31,10 @@ body {
     width: 200px;
     height: 50px;
     border-radius: 0px;
+    margin-top: 40px;
     margin-left: 50px;
     margin-right: 50px;
-    margin-bottom: 40px;
+    margin-bottom: 0px;
     font-size: 20px;
     transition: background-color .3s, font-weight .3s;
     -webkit-transition: background-color .3s, font-weight .3s, color .7s;
@@ -47,7 +48,7 @@ body {
 
 .createTitle {
     letter-spacing: 0.5px;
-    font-size: 32px;
+    font-size: 50px;
     margin-bottom: 20px;
     margin-top: 0px;
 }
@@ -57,9 +58,11 @@ body {
     border-color: rgba(0, 0, 0, 0.0);
     font-size: 25px;
     text-align: center;
-    margin-top: 0px;
+    margin-top: 20px;
     width: 200px;
     height: 50px;
+    padding: 0px;
+    border: 0px;
 }
 
 
