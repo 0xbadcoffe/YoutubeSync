@@ -14,96 +14,9 @@ function firebaseInit() {
 var appHistory = [];
 
 
-// //global vars
-// var body = document.getElementsByTagName('body')[0];
+//global vars
+var body = document.getElementsByTagName('body')[0];
 
-// //Main homepage
-
-// function welcomeButtonsPressed() {
-//     var div = document.createElement("div");
-//     div.id = "roomBox"
-
-//     var joinRoomButton = document.createElement("button")
-//     joinRoomButton.innerText = "Join a Room";
-//     joinRoomButton.onclick = clearAll;
-//     joinRoomButton.className = "buttons1";
-//     joinRoomButton.id = "joinroombutton";
-
-//     var createRoomButton = document.createElement("button");
-//     createRoomButton.innerText = "Create a Room";
-//     createRoomButton.className = "buttons1";
-//     createRoomButton.onclick = clearAll;
-//     createRoomButton.id = "createroombutton";
-
-//     var welcomeBanner = document.createElement("h1");
-//     welcomeBanner.innerText = "Welcome";
-//     welcomeBanner.className = "welcome";
-
-//     div.appendChild(welcomeBanner);
-//     div.appendChild(createRoomButton);
-//     div.appendChild(joinRoomButton);
-
-//     document.getElementsByTagName('body')[0].appendChild(div);
-// }
-
-
-// function clearAll() {
-//     var sender = this.id;
-//     body.innerHTML = "";
-//     var logo = document.createElement("h1");
-//     logo.innerText = "DJSync";
-//     body.appendChild(logo);
-
-
-
-//     switch (sender) {
-//         case ("createroombutton"):
-//             //console.log(sender + " was pressed");
-//             createRoom();
-//             break;
-//         case ("joinroombutton"):
-//             // console.log(sender + " was pressed");
-//             joinRoom();
-//             break;
-//         default:
-//             //console.log(sender);
-//             break;
-//     }
-
-// }
-
-// function createRoom() {
-//     var div = document.createElement("div");
-//     div.id = "roomBox"
-
-//     var createTitle = document.createElement("h1");
-//     createTitle.className = "createTitle";
-//     createTitle.innerText = "Enter a Room Name"
-
-//     var input = document.createElement("input");
-//     input.placeholder = "case sensitive!";
-//     input.className = "inputs1";
-
-//     var createButton = document.createElement("button");
-//     createButton.className = "buttons1";
-//     createButton.innerText = "Launch";
-//     createButton.style.marginTop = "20px";
-//     createButton.onclick = "";
-
-
-//     div.appendChild(createTitle);
-//     div.appendChild(input);
-//     div.appendChild(createButton);
-//     div.style.height = "220px"
-
-//     document.getElementsByTagName('body')[0].appendChild(div);
-// }
-
-// function joinRoom() {
-//     var div = document.createElement("div");
-//     div.id = "roomBox"
-
-// }
 
 // Loads a local HTML file and injects the HTML into the container element
 function appendTemplate(templateName) {
