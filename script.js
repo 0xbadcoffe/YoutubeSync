@@ -110,6 +110,7 @@ function appendTemplate(templateName) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', `${templateName}.html`, true);
     xhr.onreadystatechange = function() {
+        console.log('hey')
         if (this.readyState !== 4) {
             console.log('error', this.error);
             return;
@@ -141,14 +142,10 @@ function goBack() {
 }
 
 function bootstrapScripts(templateName) {
+
     switch (templateName) {
-        case 'test':
+        case 'home':
             onSomeBtnClicked();
-            break;
-        case 'test1':
-            $('#testBtn').on('click', () => {
-                goBack();
-            });
             break;
     }
 }
@@ -161,8 +158,8 @@ function bootstrap() {
 }
 
 function onSomeBtnClicked() {
-    $('#someBtn').on('click', () => {
-        appendTemplate('test1');
+    $('#joinRoomButton').on('click', () => {
+        appendTemplate('joinRoomPrompt');
     });
 }
 
