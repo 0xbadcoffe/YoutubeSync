@@ -8,15 +8,6 @@ body {
     background-color: rgba(0, 0, 0, .9);
 }
 
-#roomBox {
-    height: 300px;
-    width: 300px;
-    background-color: rgba(255, 255, 255, 0.08);
-    margin: 30px auto 0px;
-    text-align: center;
-    padding: 20px;
-}
-
 .welcome {
     letter-spacing: 0.5px;
     font-size: 60px;
@@ -31,12 +22,8 @@ body {
     width: 200px;
     height: 50px;
     border-radius: 0px;
-    margin-top: 20px;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-bottom: 0px;
     font-size: 20px;
-    transition: background-color .3s, font-weight .3s;
+    transition: background-color .3s, font-weight .3s, color 0.7s;
     -webkit-transition: background-color .3s, font-weight .3s, color .7s;
 }
 
@@ -58,8 +45,6 @@ body {
     border-color: rgba(0, 0, 0, 0.0);
     font-size: 25px;
     text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
     width: 200px;
     height: 50px;
     padding: 0px;

@@ -142,7 +142,6 @@ function goBack() {
 }
 
 function bootstrapScripts(templateName) {
-
     switch (templateName) {
         case 'home':
             onSomeBtnClicked();
@@ -160,6 +159,9 @@ function bootstrap() {
 function onSomeBtnClicked() {
     $('#joinRoomButton').on('click', () => {
         appendTemplate('joinRoomPrompt');
+    });
+    $('#createroombutton').on('click', () => {
+        appendTemplate('createRoomPrompt');
     });
 }
 
