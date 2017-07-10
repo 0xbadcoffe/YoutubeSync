@@ -12,8 +12,7 @@ function firebaseInit() {
 }
 
 var appHistory = [];
-var vidID = '';
-var time = '';
+
 
 
 //global vars
@@ -83,8 +82,6 @@ function onSomeBtnClicked() {
     });
     $('#submitJoinRoom').on('click', () => {
         appendTemplate('viewingRoom');
-        fireGet('Zain');
-        console.log(time);
     });
 }
 
@@ -101,11 +98,12 @@ function fireSet(roomName, ID, start) {
     //promise.then()
 }
 
-function fireGet(roomName) {
+var vidID = '';
+var time = '';
 
+function fireGet(roomName) {
     return firebase.database().ref(roomName).once('value').then(function(snapshot) {
         time = snapshot.val().startTime;
         vidId = snapshot.val().videoLink;
-        console.log(time);
     });
 }
