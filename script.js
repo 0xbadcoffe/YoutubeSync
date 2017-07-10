@@ -87,3 +87,22 @@ function onSomeBtnClicked() {
 $(function() {
     bootstrap();
 });
+
+function fireSet(roomName, ID, start) {
+    const promise = firebase.database().ref(roomName).set({
+        videoLink: ID,
+        startTime: start
+    });
+    //run function on success, something on failure
+    //promise.then()
+}
+
+function fireGet(roomName) {
+    var ID = '';
+    var timeStarted = '';
+    return firebase.database().ref(roomName).once('value').then(function(snapshot) {
+        timeStarted = snapshot.val().startTime;
+        playingViddeoId = snapshot.val().videoLink;
+        return [ID, timeStarted];
+    });
+}
