@@ -12,6 +12,8 @@ function firebaseInit() {
 }
 
 var appHistory = [];
+var ID = '';
+var timeStarted = '';
 
 
 //global vars
@@ -98,11 +100,9 @@ function fireSet(roomName, ID, start) {
 }
 
 function fireGet(roomName) {
-    var ID = '';
-    var timeStarted = '';
+
     return firebase.database().ref(roomName).once('value').then(function(snapshot) {
         timeStarted = snapshot.val().startTime;
         playingViddeoId = snapshot.val().videoLink;
-        return [ID, timeStarted];
     });
 }
