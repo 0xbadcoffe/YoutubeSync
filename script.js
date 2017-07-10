@@ -59,9 +59,9 @@ function bootstrapScripts(templateName) {
         case 'home':
             onSomeBtnClicked();
             break;
-            // case 'joinRoomPrompt':
-            //     onSomeBtnClicked();
-            //     break;
+        case 'joinRoomPrompt':
+            onSomeBtnClicked();
+            break;
     }
 }
 
@@ -74,7 +74,7 @@ function bootstrap() {
 
 function onSomeBtnClicked() {
     $('#joinRoomButton').on('click', () => {
-        appendTemplate('joinRoomPrompt');
+        appendTemplate('joinRoomPrompt')
     });
     $('#createroombutton').on('click', () => {
         appendTemplate('createRoomPrompt');
