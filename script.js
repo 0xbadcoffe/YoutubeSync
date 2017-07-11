@@ -63,6 +63,12 @@ function bootstrapScripts(templateName) {
         case 'joinRoomPrompt':
             onSomeBtnClicked();
             break;
+        case 'createRoomPrompt':
+            onSomeBtnClicked();
+            break;
+        default:
+            onSomeBtnClicked();
+            break;
     }
 }
 
@@ -81,8 +87,26 @@ function onSomeBtnClicked() {
         appendTemplate('createRoomPrompt');
     });
     $('#submitJoinRoom').on('click', () => {
-        appendTemplate('viewingRoom');
+        var roomName = document.getElementById('roomName').value;
+        if (roomName == null) {
+            alert("Please make sure that both the Room Name field is filled");
+            return;
+        } else {
+            fireGet(roomName);
+            appendTemplate('viewingRoom');
+        }
     });
+    $('#submitCreateRoom').on('click', () => {
+        var roomName = document.getElementById('roomName').value;
+        var video = document.getElementById('video').value;
+        if (roomName == null || video == null) {
+            alert("Please make sure that both the Room Name and Video Id fields are filled");
+            return;
+        } else {
+            fireSet(roomName, video, (new Date).getTime());
+            appendTemplate('viewingRoom');
+        }
+    })
 }
 
 $(function() {
