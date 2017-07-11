@@ -88,7 +88,7 @@ function onSomeBtnClicked() {
     });
     $('#submitJoinRoom').on('click', () => {
         var roomName = document.getElementById('roomName').value;
-        if (roomName == null) {
+        if (roomName == "") {
             alert("Please make sure that both the Room Name field is filled");
             return;
         } else {
@@ -99,7 +99,7 @@ function onSomeBtnClicked() {
     $('#submitCreateRoom').on('click', () => {
         var roomName = document.getElementById('roomName').value;
         var video = document.getElementById('video').value;
-        if (roomName == null || video == null) {
+        if (roomName == "" || video == "") {
             alert("Please make sure that both the Room Name and Video Id fields are filled");
             return;
         } else {
