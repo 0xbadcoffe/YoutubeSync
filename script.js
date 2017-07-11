@@ -109,6 +109,8 @@ function onSomeBtnClicked() {
     })
 }
 
+
+
 $(function() {
     bootstrap();
 });

@@ -1,7 +1,7 @@
 <script type="text/javascript">
     //global link vars
-    var videoID = "M7lc1UVf-VE";
-    var youtubeLink = "https://www.youtube.com/embed/" + videoID + "?enablejsapi=1&autoplay=1";
+    // var videoID = "M7lc1UVf-VE";
+    // var youtubeLink = "https://www.youtube.com/embed/" + videoID + "?enablejsapi=1&autoplay=1";
 
     var tag = document.createElement('script');
     tag.id = 'iframe';
@@ -41,6 +41,14 @@
         }
 
     }
+    console.log('hi');
+
+    function syncRoom() {
+        console.log("SHEEIT");
+        var currentTime = (new Date).getTime();
+        var timeIntoVideo = Math.ceil((currentTime - time) / 1000);
+        document.getElementsByTagName('iframe')[0].src = "https://www.youtube.com/embed/" + vidID + "?enablejsapi=1&autoplay=1&start=" + timeIntoVideo;
+    }
 
     // function onPlayerStateChange(event) {
     //     eventFired(event.data);
@@ -48,6 +56,7 @@
     event.target.playVideo();
 </script>
 <iframe id="iframe" width="800" height="450"></iframe>
+
 
 <style>
     #iframe {
