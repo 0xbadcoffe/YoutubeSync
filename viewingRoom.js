@@ -46,6 +46,7 @@ function syncRoom() {
     var currentTime = (new Date).getTime();
     var timeIntoVideo = Math.round((currentTime - time) / 1000);
     player.cueVideoById("M7lc1UVf-VE", timeIntoVideo);
+    event.target.playVideo();
     //document.getElementsByTagName('iframe')[0].src = "https://www.youtube.com/embed/" + vidID + "?enablejsapi=1&autoplay=1&start=" + timeIntoVideo;
 }
 

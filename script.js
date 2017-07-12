@@ -93,7 +93,7 @@ function onSomeBtnClicked() {
         } else {
             fireGet(roomName);
             appendTemplate('viewingRoom');
-            syncRoom();
+
         }
     });
     $('#submitCreateRoom').on('click', () => {
