@@ -124,8 +124,8 @@ function fireSet(roomName, ID, start) {
     });
 }
 
-var vidId = '';
-var time = '';
+var vidId = 0;
+var time = 0;
 
 function fireGet(roomName) {
     return firebase.database().ref(roomName).once('value').then(function(snapshot) {
