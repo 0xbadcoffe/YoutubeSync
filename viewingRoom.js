@@ -5,7 +5,7 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player;
-var videoId = 'M7lc1UVf-VE';
+var videoId = '';
 
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('iframe', {
@@ -22,7 +22,7 @@ function onPlayerReady(event) {
 }
 
 function eventFired(playerStatus) {
-    console.log("event fired");
+    // console.log("event fired");
 
     if (playerStatus == -1) {
         //event.target.playVideo();
