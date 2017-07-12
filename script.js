@@ -92,7 +92,6 @@ function onSomeBtnClicked() {
             return;
         } else {
             fireGet(roomName);
-            console.log(vidId);
             appendTemplate('viewingRoom');
             syncRoom();
         }
@@ -104,13 +103,11 @@ function onSomeBtnClicked() {
             alert("Please make sure that both the Room Name and Video Id fields are filled");
             return;
         } else {
-            fireSet(roomName, video, (new Date).getTime());
             appendTemplate('viewingRoom');
-            syncRoom();
+            fireSet(roomName, video, (new Date).getTime());
         }
     })
 }
-
 
 
 $(function() {
@@ -122,8 +119,9 @@ function fireSet(roomName, ID, start) {
         videoLink: ID,
         startTime: start
     });
-    //run function on success, something on failure
-    //promise.then()
+    promise.then(function() {
+        syncRoom();
+    });
 }
 
 var vidId = '';
@@ -133,8 +131,6 @@ function fireGet(roomName) {
     return firebase.database().ref(roomName).once('value').then(function(snapshot) {
         time = snapshot.val().startTime;
         vidId = snapshot.val().videoLink;
-        console.log(snapshot.val().videoLink);
-        console.log(vidId);
-        console.log(time);
+        syncRoom();
     });
 }

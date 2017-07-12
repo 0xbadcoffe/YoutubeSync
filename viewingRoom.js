@@ -42,8 +42,7 @@ function eventFired(playerStatus) {
 
 
 function syncRoom() {
-    console.log(vidId);
-    console.log(time);
+    console.log('this works');
     var currentTime = (new Date).getTime();
     var timeIntoVideo = Math.round((currentTime - time) / 1000);
     player.cueVideoById("M7lc1UVf-VE", timeIntoVideo);
