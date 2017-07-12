@@ -120,6 +120,8 @@ function fireSet(roomName, ID, start) {
         startTime: start
     });
     promise.then(function() {
+        vidId = ID;
+        time = start;
         syncRoom();
     });
 }

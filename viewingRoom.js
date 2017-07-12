@@ -42,10 +42,10 @@ function eventFired(playerStatus) {
 
 
 function syncRoom() {
-    console.log(vidId);
     var currentTime = (new Date).getTime();
     var timeIntoVideo = Math.round((currentTime - time) / 1000);
     player.cueVideoById(vidId, timeIntoVideo);
+    document.getElementById('iframe').style.display = 'block';
     // event.target.playVideo();
     //document.getElementsByTagName('iframe')[0].src = "https://www.youtube.com/embed/" + vidID + "?enablejsapi=1&autoplay=1&start=" + timeIntoVideo;
 }
