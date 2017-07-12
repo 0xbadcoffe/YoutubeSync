@@ -24,7 +24,6 @@ function appendTemplate(templateName) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', `${templateName}.html`, true);
     xhr.onreadystatechange = function() {
-        console.log('hey')
         if (this.readyState !== 4) {
             console.log('error', this.error);
             return;
@@ -93,7 +92,9 @@ function onSomeBtnClicked() {
             return;
         } else {
             fireGet(roomName);
+            console.log(vidId);
             appendTemplate('viewingRoom');
+            syncRoom();
         }
     });
     $('#submitCreateRoom').on('click', () => {
@@ -105,6 +106,7 @@ function onSomeBtnClicked() {
         } else {
             fireSet(roomName, video, (new Date).getTime());
             appendTemplate('viewingRoom');
+            syncRoom();
         }
     })
 }
@@ -124,12 +126,15 @@ function fireSet(roomName, ID, start) {
     //promise.then()
 }
 
-var vidID = '';
+var vidId = '';
 var time = '';
 
 function fireGet(roomName) {
     return firebase.database().ref(roomName).once('value').then(function(snapshot) {
         time = snapshot.val().startTime;
         vidId = snapshot.val().videoLink;
+        console.log(snapshot.val().videoLink);
+        console.log(vidId);
+        console.log(time);
     });
 }

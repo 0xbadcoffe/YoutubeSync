@@ -25,13 +25,13 @@ function eventFired(playerStatus) {
     console.log("event fired");
 
     if (playerStatus == -1) {
-        event.target.playVideo();
+        //event.target.playVideo();
     } else if (playerStatus == 0) {
 
     } else if (playerStatus == 1) {
 
     } else if (playerStatus == 2) {
-        event.target.playVideo();
+        //event.target.playVideo();
     } else if (playerStatus == 3) {
 
     } else if (playerStatus == 5) {
@@ -40,10 +40,13 @@ function eventFired(playerStatus) {
 
 }
 
+
 function syncRoom() {
-    console.log(vidID);
+    console.log(vidId);
+    console.log(time);
     var currentTime = (new Date).getTime();
     var timeIntoVideo = Math.round((currentTime - time) / 1000);
+    player.cueVideoById("M7lc1UVf-VE", timeIntoVideo);
     //document.getElementsByTagName('iframe')[0].src = "https://www.youtube.com/embed/" + vidID + "?enablejsapi=1&autoplay=1&start=" + timeIntoVideo;
 }
 
