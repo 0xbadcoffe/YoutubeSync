@@ -122,7 +122,7 @@ function fireSet(roomName, ID, start) {
     promise.then(function() {
         vidId = ID;
         time = start;
-        syncRoom();
+        syncRoom(roomName);
     });
 }
 
@@ -133,6 +133,16 @@ function fireGet(roomName) {
     return firebase.database().ref(roomName).once('value').then(function(snapshot) {
         time = snapshot.val().startTime;
         vidId = snapshot.val().videoLink;
-        syncRoom();
+        syncRoom(roomName);
+    });
+}
+
+var activeRooms = ["", ""];
+
+function getActiveRooms() {
+    return firebase.database().ref("music-sync-8212d").once('value').then(function(snapshot) {
+        var rootFolder = "music-sync-8212d"
+        activeRooms = snapshot.val();
+        console.log(activeRooms);
     });
 }
