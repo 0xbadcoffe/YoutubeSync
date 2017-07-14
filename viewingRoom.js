@@ -45,6 +45,7 @@ function make(roomName) {
     var roomTitle = document.createElement("h2");
     roomTitle.innerText = "Room: " + roomName;
     ytPlayer.parentElement.insertBefore(roomTitle, ytPlayer);
+    //create new elements
     var newButton = document.createElement("button");
     var button2 = document.createElement('button');
     var table = document.createElement("table");
@@ -52,6 +53,7 @@ function make(roomName) {
     var upNext = document.createElement('th');
     var idCol = document.createElement('th');
     var cancel = document.createElement('button');
+    //set ID's and inner text, decide whether to hide/show buttons
     table.id = "playlist";
     newButton.id = "addToPlaylist";
     button2.id = "add";
@@ -63,12 +65,18 @@ function make(roomName) {
     cancel.style.display = 'none';
     newButton.className = "buttons1";
     button2.className = 'buttons1';
+    cancel.className = 'buttons1';
+    cancel.style.margin = '10px';
+    newButton.style.margin = '10px';
+    button2.style.margin = '10px';
+    //Shows the forms and the buttons needed
     newButton.addEventListener("click", () => {
-        // document.getElementsByTagName('table')[0].style.display = 'table';
         document.getElementById('addToPlaylist').style.display = 'none';
         document.getElementById('add').style.display = 'inline-block';
+        document.getElementById('cancel').style.display = 'inline-block';
         document.getElementById('forms').style.display = 'table-row';
     });
+    //Add button appends new item to the end of the table
     button2.addEventListener("click", () => {
         var name = document.getElementById('nameinput').value;
         var id = document.getElementById('idinput').value;
@@ -90,9 +98,11 @@ function make(roomName) {
             newListItem.appendChild(itemID);
             var table = document.getElementsByTagName('table')[0];
             table.insertBefore(newListItem, table.lastChild);
+            var temp = new PlaylistItem(name, id);
+            playlist.push(temp);
         }
     });
-
+    //event listener for cancel button
     cancel.addEventListener("click", () => {
         document.getElementById('addToPlaylist').style.display = 'inline-block';
         document.getElementById('add').style.display = 'none';
@@ -141,12 +151,14 @@ function syncRoom(roomName) {
     document.getElementById('iframe').style.display = 'block';
     player.playVideo();
     make(roomName);
-
-    //body.appendChild(roomTitle);
-    // event.target.playVideo();
-    //document.getElementsByTagName('iframe')[0].src = "https://www.youtube.com/embed/" + vidID + "?enablejsapi=1&autoplay=1&start=" + timeIntoVideo;
 }
 
 function onPlayerStateChange(event) {
     eventFired(event.data);
 }
+
+function PlaylistItem(name, id) {
+    this.name = name;
+    this.id = id;
+}
+var playlist = new Array();
