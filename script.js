@@ -65,6 +65,9 @@ function bootstrapScripts(templateName) {
         case 'createRoomPrompt':
             onSomeBtnClicked();
             break;
+        case 'viewingRoom':
+            onSomeBtnClicked();
+            break;
         default:
             onSomeBtnClicked();
             break;
@@ -106,7 +109,7 @@ function onSomeBtnClicked() {
             appendTemplate('viewingRoom');
             fireSet(roomName, video, (new Date).getTime());
         }
-    })
+    });
 }
 
 
