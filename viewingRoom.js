@@ -52,9 +52,7 @@ function syncRoom(roomName) {
     roomTitle.innerText = "Room: " + roomName;
     ytPlayer.parentElement.insertBefore(roomTitle, ytPlayer);
     var body = document.getElementsByTagName("body")[0];
-    //body.appendChild(roomTitle);
-    // event.target.playVideo();
-    //document.getElementsByTagName('iframe')[0].src = "https://www.youtube.com/embed/" + vidID + "?enablejsapi=1&autoplay=1&start=" + timeIntoVideo;
+
 }
 
 function onPlayerStateChange(event) {
