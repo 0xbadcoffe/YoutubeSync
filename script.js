@@ -25,7 +25,7 @@ function appendTemplate(templateName) {
     xhr.open('GET', `${templateName}.html`, true);
     xhr.onreadystatechange = function() {
         if (this.readyState !== 4) {
-            console.log('error', this.error);
+            //console.log('error', this.error);
             return;
         }
         appendHistory(templateName);
@@ -54,6 +54,7 @@ function goBack() {
     }
 }
 
+//must add every page with buttons to bootStrapScripts
 function bootstrapScripts(templateName) {
     switch (templateName) {
         case 'home':
@@ -118,7 +119,8 @@ $(function() {
 });
 
 function fireSet(roomName, ID, start) {
-    const promise = firebase.database().ref(roomName).set({
+    console.log("fireset...")
+    const promise = firebase.database().ref("Rooms/" + roomName).set({
         videoLink: ID,
         startTime: start
     });
@@ -133,19 +135,41 @@ var vidId = 0;
 var time = 0;
 
 function fireGet(roomName) {
-    return firebase.database().ref(roomName).once('value').then(function(snapshot) {
+    return firebase.database().ref("Rooms/" + roomName).once('value').then(function(snapshot) {
+        console.log("fireget...")
         time = snapshot.val().startTime;
         vidId = snapshot.val().videoLink;
         syncRoom(roomName);
     });
 }
 
-var activeRooms = ["", ""];
+var activeRooms = "";
 
 function getActiveRooms() {
-    return firebase.database().ref("music-sync-8212d").once('value').then(function(snapshot) {
-        var rootFolder = "music-sync-8212d"
+    return firebase.database().ref("Rooms").once('value').then(function(snapshot) {
         activeRooms = snapshot.val();
-        console.log(activeRooms);
+        console.log(Object.keys(activeRooms));
     });
+}
+
+//firebase user presence testing 
+
+// function checkConnectedStatus() {
+//     var connectedRef = firebase.database().ref(".info/connected");
+//     connectedRef.on("value", function(snap) {
+//         if (snap.val() === true) {
+//             console.log(firebase.database().ref(".info/connected"));
+//             alert("connected");
+//         } else {
+//             alert("not connected");
+//         }
+//     });
+// }
+
+var presenceRef;
+
+function setPresenceRef() {
+    presenceRef = firebase.database().ref("disconnectmessage");
+    // Write a string when this client loses connection
+    presenceRef.onDisconnect().set("I disconnected!");
 }

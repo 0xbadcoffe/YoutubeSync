@@ -146,7 +146,12 @@ function syncRoom(roomName) {
     player.cueVideoById(vidId, timeIntoVideo);
     document.getElementById('iframe').style.display = 'block';
     player.playVideo();
-    make(roomName);
+    var ytPlayer = document.getElementById("iframe");
+    var roomTitle = document.createElement("h2");
+    roomTitle.innerText = "Room: " + roomName;
+    ytPlayer.parentElement.insertBefore(roomTitle, ytPlayer);
+    var body = document.getElementsByTagName("body")[0];
+
 }
 
 function onPlayerStateChange(event) {
