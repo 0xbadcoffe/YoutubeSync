@@ -26,15 +26,12 @@ function onVideoEnd(playerStatus) {
     if (playerStatus == 0) {
         console.log('the video has ended');
         playlist.splice(0, 1);
-        fireSet(room, playlist[0], (new Date).getTime());
+        fireSet(room, playlist[0].id, (new Date).getTime());
     }
 }
 
 function make(roomName) {
-    var ytPlayer = document.getElementById("iframe");
-    var roomTitle = document.createElement("h2");
-    roomTitle.innerText = "Room: " + roomName;
-    ytPlayer.parentElement.insertBefore(roomTitle, ytPlayer);
+    var ytPlayer = document.getElementById('iframe');
     //create new elements
     var newButton = document.createElement("button");
     var button2 = document.createElement('button');
@@ -147,10 +144,15 @@ function syncRoom(roomName) {
     document.getElementById('iframe').style.display = 'block';
     player.playVideo();
     var ytPlayer = document.getElementById("iframe");
-    var roomTitle = document.createElement("h2");
-    roomTitle.innerText = "Room: " + roomName;
-    ytPlayer.parentElement.insertBefore(roomTitle, ytPlayer);
     var body = document.getElementsByTagName("body")[0];
+    if (document.getElementById("roomTitle") == null) {
+        var roomTitle = document.createElement("h2");
+        roomTitle.innerText = "Room: " + roomName;
+        roomTitle.id = 'roomTitle';
+        ytPlayer.parentElement.insertBefore(roomTitle, ytPlayer);
+    }
+
+    make(roomName);
 
 }
 
