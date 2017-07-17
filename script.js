@@ -165,6 +165,14 @@ function getActiveRooms() {
 //         }
 //     });
 // }
+function fireUpdate(roomName) {
+    const promise = firebase.database().ref("Rooms/" + roomName).update({
+        next: playlist
+    })
+    promise.then(function() {
+        console.log('it works');
+    })
+}
 
 var presenceRef;
 
