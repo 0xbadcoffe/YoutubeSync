@@ -6,6 +6,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player;
 var videoId = '';
+var room = '';
 
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('iframe', {
@@ -21,23 +22,12 @@ function onPlayerReady(event) {
     event.target.playVideo();
 }
 
-function eventFired(playerStatus) {
-    // console.log("event fired");
-
-    if (playerStatus == -1) {
-        //event.target.playVideo();
-    } else if (playerStatus == 0) {
-
-    } else if (playerStatus == 1) {
-
-    } else if (playerStatus == 2) {
-        //event.target.playVideo();
-    } else if (playerStatus == 3) {
-
-    } else if (playerStatus == 5) {
-
+function onVideoEnd(playerStatus) {
+    if (playerStatus == 0) {
+        console.log('the video has ended');
+        playlist.splice(0, 1);
+        fireSet(room, playlist[0], (new Date).getTime());
     }
-
 }
 
 function make(roomName) {
@@ -87,6 +77,7 @@ function make(roomName) {
             document.getElementById('addToPlaylist').style.display = 'inline-block';
             document.getElementById('add').style.display = 'none';
             document.getElementById('forms').style.display = 'none';
+            document.getElementById('cancel').style.display = 'none';
             document.getElementById('nameinput').value = '';
             document.getElementById('idinput').value = '';
             var newListItem = document.createElement('tr');
@@ -100,6 +91,7 @@ function make(roomName) {
             table.insertBefore(newListItem, table.lastChild);
             var temp = new PlaylistItem(name, id);
             playlist.push(temp);
+            fireUpdate(roomName);
         }
     });
     //event listener for cancel button
@@ -107,6 +99,7 @@ function make(roomName) {
         document.getElementById('addToPlaylist').style.display = 'inline-block';
         document.getElementById('add').style.display = 'none';
         document.getElementById('forms').style.display = 'none';
+        document.getElementById('cancel').style.display = 'none';
         document.getElementById('nameinput').value = '';
         document.getElementById('idinput').value = '';
     });
@@ -145,8 +138,11 @@ function make(roomName) {
 
 
 function syncRoom(roomName) {
+    room = roomName;
+    fireUpdate(roomName);
     var currentTime = (new Date).getTime();
     var timeIntoVideo = ((currentTime - time) / 1000);
+    playlist.push(vidId);
     player.cueVideoById(vidId, timeIntoVideo);
     document.getElementById('iframe').style.display = 'block';
     player.playVideo();
@@ -154,7 +150,7 @@ function syncRoom(roomName) {
 }
 
 function onPlayerStateChange(event) {
-    eventFired(event.data);
+    onVideoEnd(event.data);
 }
 
 function PlaylistItem(name, id) {
