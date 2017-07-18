@@ -127,6 +127,7 @@ function fireSet(roomName, ID, start) {
     promise.then(function() {
         vidId = ID;
         time = start;
+
         syncRoom(roomName);
     });
 }
@@ -140,9 +141,11 @@ function fireGet(roomName) {
         time = snapshot.val().startTime;
         vidId = snapshot.val().videoLink;
         syncRoom(roomName);
+
     });
 }
 
+//Returns the names of all keys (roomnames) in the database)
 var activeRooms = "";
 
 function getActiveRooms() {
@@ -174,10 +177,28 @@ function fireUpdate(roomName) {
     })
 }
 
-var presenceRef;
 
-function setPresenceRef() {
-    presenceRef = firebase.database().ref("disconnectmessage");
-    // Write a string when this client loses connection
-    presenceRef.onDisconnect().set("I disconnected!");
+
+var connectedNumber; //temporary number
+function pullConnectedNumber() {
+    return firebase.database().ref("Rooms/" + room).once('value').then(function(snapshot) {
+        console.log("pulling connectedNumber...")
+        connectedNumber = snapshot.val().connectedUsers;
+        console.log(connectedNumber);
+    });
+
+}
+
+var connectedRef; //this is what the below function subscribes to in order to watch for a disconnect
+function setConnectedRef() {
+    console.log("ran setConnectedRef()...");
+    //pullConnectedNumber();
+    connectedRef = firebase.database().ref("/Rooms/" + room + "/connectedUsers");
+    connectedRef.set(connectedNumber + 1);
+    connectedRef.onDisconnect().set(connectedNumber);
+    connectedRef.on('value', function(snapshot) {
+        pullConnectedNumber();
+        //console.log(connectedNumber);
+    });
+
 }
