@@ -77,18 +77,22 @@ function make(roomName) {
             document.getElementById('cancel').style.display = 'none';
             document.getElementById('nameinput').value = '';
             document.getElementById('idinput').value = '';
-            var newListItem = document.createElement('tr');
-            var itemName = document.createElement('td');
-            var itemID = document.createElement('td');
-            itemID.innerText = id;
-            itemName.innerText = name;
-            newListItem.appendChild(itemName);
-            newListItem.appendChild(itemID);
-            var table = document.getElementsByTagName('table')[0];
-            table.insertBefore(newListItem, table.lastChild);
             var temp = new PlaylistItem(name, id);
             playlist.push(temp);
             fireUpdate(roomName);
+            updateTable();
+            // var newListItem = document.createElement('tr');
+            // var itemName = document.createElement('td');
+            // var itemID = document.createElement('td');
+            // itemID.innerText = id;
+            // itemName.innerText = name;
+            // newListItem.appendChild(itemName);
+            // newListItem.appendChild(itemID);
+            // var table = document.getElementsByTagName('table')[0];
+            // table.insertBefore(newListItem, table.lastChild);
+
+
+
         }
     });
     //event listener for cancel button
@@ -140,7 +144,7 @@ function syncRoom(roomName) {
     fireUpdate(roomName);
     var currentTime = (new Date).getTime();
     var timeIntoVideo = ((currentTime - time) / 1000);
-    playlist.push(vidId);
+    playlist.push(new PlaylistItem("asdf", vidId));
     player.cueVideoById(vidId, timeIntoVideo);
     document.getElementById('iframe').style.display = 'block';
     player.playVideo();
@@ -155,6 +159,32 @@ function syncRoom(roomName) {
     if (!made) {
         make(roomName);
     }
+}
+
+function updateTable() {
+    var table = document.getElementsByTagName('table')[0]
+    for (var i = 2; i < table.childNodes.length; i++) {
+        table.removeChild(table.childNodes[i]);
+    }
+    return firebase.database().ref("Rooms/" + room).once('value').then(function(snapshot) {
+        var list = snapshot.val().next;
+        var newItem = '';
+        var itemName = '';
+        var itemID = '';
+        table = '';
+        console.log(list);
+        for (var i = 0; i < list.length; i++) {
+            newItem = document.createElement('tr');
+            itemName = document.createElement('td');
+            itemID = document.createElement('td');
+            itemID.innerText = list[i].id;
+            itemName.innerText = list[i].name;
+            newItem.appendChild(itemName);
+            newItem.appendChild(itemID);
+            table = document.getElementsByTagName('table')[0];
+            table.insertBefore(newItem, table.lastChild);
+        }
+    });
 }
 
 function onPlayerStateChange(event) {
