@@ -131,6 +131,7 @@ function make(roomName) {
     table.appendChild(newrow);
     newrow.style.display = 'none';
     table.style.display = 'table';
+    made = true;
 }
 
 
@@ -151,14 +152,15 @@ function syncRoom(roomName) {
         roomTitle.id = 'roomTitle';
         ytPlayer.parentElement.insertBefore(roomTitle, ytPlayer);
     }
-
-    make(roomName);
-
+    if (!made) {
+        make(roomName);
+    }
 }
 
 function onPlayerStateChange(event) {
     onVideoEnd(event.data);
 }
+var made = false;
 
 function PlaylistItem(name, id) {
     this.name = name;
