@@ -122,7 +122,8 @@ function fireSet(roomName, ID, start) {
     console.log("fireset...")
     const promise = firebase.database().ref("Rooms/" + roomName).set({
         videoLink: ID,
-        startTime: start
+        startTime: start,
+        connectedUsers: 0
     });
     promise.then(function() {
         vidId = ID;
@@ -173,7 +174,7 @@ function fireUpdate(roomName) {
         next: playlist
     })
     promise.then(function() {
-        console.log('it works');
+        console.log('firebase playlist updated.');
     })
 }
 
@@ -185,6 +186,7 @@ function pullConnectedNumber() {
         console.log("pulling connectedNumber...")
         connectedNumber = snapshot.val().connectedUsers;
         console.log(connectedNumber);
+        setConnectedRef();
     });
 
 }
@@ -192,13 +194,33 @@ function pullConnectedNumber() {
 var connectedRef; //this is what the below function subscribes to in order to watch for a disconnect
 function setConnectedRef() {
     console.log("ran setConnectedRef()...");
-    //pullConnectedNumber();
     connectedRef = firebase.database().ref("/Rooms/" + room + "/connectedUsers");
     connectedRef.set(connectedNumber + 1);
     connectedRef.onDisconnect().set(connectedNumber);
+
     connectedRef.on('value', function(snapshot) {
-        pullConnectedNumber();
-        //console.log(connectedNumber);
+        //Add connected users element
+        connectedNumber = snapshot.val();
+        createConnectedElement();
     });
+}
+
+var counterExists = false;
+
+function createConnectedElement() {
+    var body = document.getElementsByTagName("body")[0];
+    var counter = document.createElement("h2");
+    if (counterExists) {
+
+        console.log("counter does exist ran");
+        var counterVar = document.getElementById("counter");
+        counterVar.innerText = "Users: " + connectedNumber;
+    } else {
+        console.log("counter does not exist ran");
+        counter.innerText = "Users: " + connectedNumber;
+        counter.id = "counter";
+        body.appendChild(counter);
+        counterExists = true;
+    }
 
 }

@@ -159,6 +159,9 @@ function syncRoom(roomName) {
     if (!made) {
         make(roomName);
     }
+
+    pullConnectedNumber();
+
 }
 
 function updateTable() {
