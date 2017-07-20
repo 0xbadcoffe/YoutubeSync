@@ -153,6 +153,7 @@ function getActiveRooms() {
     return firebase.database().ref("Rooms").once('value').then(function(snapshot) {
         activeRooms = snapshot.val();
         console.log(Object.keys(activeRooms));
+        console.log(Object.keys(activeRooms).length)
     });
 }
 
