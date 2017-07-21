@@ -62,6 +62,7 @@ function bootstrapScripts(templateName) {
             break;
         case 'joinRoomPrompt':
             onSomeBtnClicked();
+            getActiveRooms();
             break;
         case 'createRoomPrompt':
             onSomeBtnClicked();
@@ -148,28 +149,17 @@ function fireGet(roomName) {
 
 //Returns the names of all keys (roomnames) in the database)
 var activeRooms = "";
+var activeRoomsKeys;
 
 function getActiveRooms() {
     return firebase.database().ref("Rooms").once('value').then(function(snapshot) {
         activeRooms = snapshot.val();
+        activeRoomsKeys = Object.keys(activeRooms);
         console.log(Object.keys(activeRooms));
         console.log(Object.keys(activeRooms).length)
     });
 }
 
-//firebase user presence testing 
-
-// function checkConnectedStatus() {
-//     var connectedRef = firebase.database().ref(".info/connected");
-//     connectedRef.on("value", function(snap) {
-//         if (snap.val() === true) {
-//             console.log(firebase.database().ref(".info/connected"));
-//             alert("connected");
-//         } else {
-//             alert("not connected");
-//         }
-//     });
-// }
 function fireUpdate(roomName) {
     const promise = firebase.database().ref("Rooms/" + roomName).update({
         next: playlist
@@ -184,7 +174,7 @@ function fireUpdate(roomName) {
 var connectedNumber; //temporary number
 function pullConnectedNumber() {
     return firebase.database().ref("Rooms/" + room).once('value').then(function(snapshot) {
-        console.log("pulling connectedNumber...")
+        //   console.log("pulling connectedNumber...")
         connectedNumber = snapshot.val().connectedUsers;
         console.log(connectedNumber);
         setConnectedRef();
@@ -212,16 +202,21 @@ function createConnectedElement() {
     var body = document.getElementsByTagName("body")[0];
     var counter = document.createElement("h2");
     if (counterExists) {
-
-        console.log("counter does exist ran");
         var counterVar = document.getElementById("counter");
         counterVar.innerText = "Users: " + connectedNumber;
     } else {
-        console.log("counter does not exist ran");
         counter.innerText = "Users: " + connectedNumber;
         counter.id = "counter";
         body.appendChild(counter);
         counterExists = true;
     }
 
+}
+
+//sets the items in the join room tiles
+function setTileButtons() {
+    for (i = 0; i < activeRoomsKeys.length; i++) {
+        var workingLiveTile = document.getElementsByClassName("tileButtons")[i];
+        workingLiveTile.innerText = activeRoomsKeys[i];
+    }
 }
