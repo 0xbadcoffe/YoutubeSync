@@ -130,7 +130,7 @@ function fireSet(roomName, ID, start) {
         vidId = ID;
         time = start;
 
-        syncRoom(roomName);
+        syncRoom(roomName, true);
     });
 }
 
@@ -142,7 +142,7 @@ function fireGet(roomName) {
         console.log("fireget...")
         time = snapshot.val().startTime;
         vidId = snapshot.val().videoLink;
-        syncRoom(roomName);
+        syncRoom(roomName, false);
 
     });
 }
