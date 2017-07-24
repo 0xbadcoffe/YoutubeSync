@@ -143,7 +143,6 @@ function fireGet(roomName) {
         time = snapshot.val().startTime;
         vidId = snapshot.val().videoLink;
         syncRoom(roomName, false);
-
     });
 }
 
@@ -161,12 +160,16 @@ function getActiveRooms() {
 }
 
 function fireUpdate(roomName) {
-    const promise = firebase.database().ref("Rooms/" + roomName).update({
-        next: playlist
-    })
-    promise.then(function() {
-        console.log('firebase playlist updated.');
-    })
+    if (playlist.length > 0 || adminprivelege) {
+        const promise = firebase.database().ref("Rooms/" + roomName).update({
+            next: playlist
+        })
+        promise.then(function() {
+            console.log('firebase playlist updated.');
+        });
+    }
+
+
 }
 
 

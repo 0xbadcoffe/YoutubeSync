@@ -38,13 +38,7 @@ function make(roomName) {
     var newrow = document.createElement('tr');
     var upNext = document.createElement('th');
     var idCol = document.createElement('th');
-    ytPlayer.insertAdjacentElement("afterend", table);
-    newrow.className = "rows"
-    idCol.innerText = "ID's"
-    upNext.innerText = "Up Next"
-    newrow.appendChild(upNext);
-    newrow.appendChild(idCol);
-    table.appendChild(newrow);
+
     //create new elements
     if (adminprivelege) {
         var newButton = document.createElement("button");
@@ -116,7 +110,17 @@ function make(roomName) {
             document.getElementById('idinput').value = '';
         });
     }
+    updateTable();
+}
 
+function makeTable() {
+    ytPlayer.insertAdjacentElement("afterend", table);
+    newrow.className = "rows"
+    idCol.innerText = "ID's"
+    upNext.innerText = "Up Next"
+    newrow.appendChild(upNext);
+    newrow.appendChild(idCol);
+    table.appendChild(newrow);
     var nameinput = document.createElement('input');
     var idinput = document.createElement('input');
     nameinput.placeholder = "name";
@@ -137,7 +141,6 @@ function make(roomName) {
     newrow.style.display = 'none';
     table.style.display = 'table';
     made = true;
-    updateTable();
 }
 
 
@@ -167,6 +170,13 @@ function syncRoom(roomName, privelege) {
 
     pullConnectedNumber();
 
+}
+
+function fireCheck(room) {
+    firebase.database().ref("Rooms/" + room + "/next").on("value", function(snapshot) {
+        console.log("listen for update event");
+        updateTable();
+    })
 }
 
 function updateTable() {
