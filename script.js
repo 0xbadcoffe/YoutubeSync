@@ -204,24 +204,24 @@ function setConnectedRef() {
 }
 
 
-var connectedNumber; //temporary number
-function pullConnectedNumber() {
-    return firebase.database().ref("Rooms/" + room).once('value').then(function(snapshot) {
-        //   console.log("pulling connectedNumber...")
-        connectedNumber = snapshot.val().connectedUsers;
-        console.log(connectedNumber);
-        setTileButtons();
-        setConnectedRef();
-    });
-    connectedNumber.on('value', function(snapshot) {
+// var connectedNumber; //temporary number
+// function pullConnectedNumber() {
+//     return firebase.database().ref("Rooms/" + room).once('value').then(function(snapshot) {
+//         //   console.log("pulling connectedNumber...")
+//         connectedNumber = snapshot.val().connectedUsers;
+//         console.log(connectedNumber);
+//         setTileButtons();
+//         setConnectedRef();
+//     });
+//     connectedNumber.on('value', function(snapshot) {
 
-    })
-}
-//sets the items in the join room tiles
-function setTileButtons() {
-    for (i = 0; i < activeRoomsKeys.length; i++) {
-        var workingLiveTile = document.getElementsByClassName("tileButtons")[i];
-        workingLiveTile.innerText = activeRoomsKeys[i];
-    }
-    return "success";
-}
+//     })
+// }
+// //sets the items in the join room tiles
+// function setTileButtons() {
+//     for (i = 0; i < activeRoomsKeys.length; i++) {
+//         var workingLiveTile = document.getElementsByClassName("tileButtons")[i];
+//         workingLiveTile.innerText = activeRoomsKeys[i];
+//     }
+//     return "success";
+// }

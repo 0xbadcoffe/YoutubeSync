@@ -38,7 +38,7 @@ function make(roomName) {
     var newrow = document.createElement('tr');
     var upNext = document.createElement('th');
     var idCol = document.createElement('th');
-
+    makeTable();
     //create new elements
     if (adminprivelege) {
         var newButton = document.createElement("button");
@@ -110,10 +110,19 @@ function make(roomName) {
             document.getElementById('idinput').value = '';
         });
     }
+    fireCheck(room);
     updateTable();
 }
 
 function makeTable() {
+    if (document.getElementsByTagName('table').length == 1) {
+        document.getElementsByTagName('table')[0].parentElement.removeChild(document.getElementsByTagName('table')[0]);
+    }
+    var ytPlayer = document.getElementById('iframe');
+    var table = document.createElement("table");
+    var newrow = document.createElement('tr');
+    var upNext = document.createElement('th');
+    var idCol = document.createElement('th');
     ytPlayer.insertAdjacentElement("afterend", table);
     newrow.className = "rows"
     idCol.innerText = "ID's"
@@ -168,19 +177,19 @@ function syncRoom(roomName, privelege) {
         make(roomName);
     }
 
-    pullConnectedNumber();
+    // pullConnectedNumber();
 
 }
 
 function fireCheck(room) {
     firebase.database().ref("Rooms/" + room + "/next").on("value", function(snapshot) {
         console.log("listen for update event");
+        makeTable();
         updateTable();
     })
 }
 
 function updateTable() {
-    console.log("this should run regardless of privelege");
 
     return firebase.database().ref("Rooms/" + room).once('value').then(function(snapshot) {
         var list = snapshot.val().next;
