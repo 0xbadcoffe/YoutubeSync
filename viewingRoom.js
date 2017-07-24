@@ -172,13 +172,10 @@ function syncRoom(roomName, privelege) {
         roomTitle.id = 'roomTitle';
         ytPlayer.parentElement.insertBefore(roomTitle, ytPlayer);
     }
-
     if (!made) {
         make(roomName);
     }
-
     // pullConnectedNumber();
-
 }
 
 function fireCheck(room) {
@@ -186,7 +183,7 @@ function fireCheck(room) {
         console.log("listen for update event");
         makeTable();
         updateTable();
-    })
+    });
 }
 
 function updateTable() {
