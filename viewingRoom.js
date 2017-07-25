@@ -177,7 +177,7 @@ function syncRoom(roomName, privelege) {
         make(roomName);
     }
 
-    // pullConnectedNumber();
+    pullConnectedNumber();
 
 }
 
