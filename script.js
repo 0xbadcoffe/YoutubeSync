@@ -233,6 +233,7 @@ function setTileButtons() {
 
 //runs whenever a button in the JoinRoom page is clicked. Passes button index # onclick
 function roomTileClicked(roomNumber) {
-    var roomToJoin = activeRoomsKeys[roomNumber];
-    //syncRoom(roomToJoin);
+    roomName = activeRoomsKeys[roomNumber];
+    fireGet(roomName);
+    appendTemplate('viewingRoom');
 }
