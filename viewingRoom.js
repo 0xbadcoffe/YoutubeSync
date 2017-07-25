@@ -55,15 +55,17 @@ function make(roomName) {
         newButton.className = "buttons1";
         button2.className = 'buttons1';
         cancel.className = 'buttons1';
-        cancel.style.margin = '10px';
-        newButton.style.margin = '10px';
-        button2.style.margin = '10px';
+        cancel.style.margin = '20px';
+        newButton.style.margin = '20px';
+        button2.style.margin = '20px';
         newButton.style.marginTop = "20px";
-        var container = ytPlayer.parentElement;
+        var container = document.createElement('div');
         container.insertBefore(newButton, container.lastChild);
         container.insertBefore(cancel, container.lastChild);
 
         container.insertBefore(button2, container.lastChild);
+        container.id = "bar"
+        ytPlayer.parentElement.insertBefore(container, ytPlayer.parentElement.lastChild);
     }
 
     //set ID's and inner text, decide whether to hide/show buttons

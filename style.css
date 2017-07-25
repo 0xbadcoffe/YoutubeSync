@@ -8,6 +8,14 @@ body {
     background-color: rgba(0, 0, 0, .9);
 }
 
+table {
+    margin: 20px auto;
+}
+
+#iframe {
+    margin: 20px auto;
+}
+
 .welcome {
     letter-spacing: 0.5px;
     font-size: 60px;
