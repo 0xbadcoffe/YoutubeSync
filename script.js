@@ -154,9 +154,14 @@ function getActiveRooms() {
     return firebase.database().ref("Rooms").once('value').then(function(snapshot) {
         activeRooms = snapshot.val();
         activeRoomsKeys = Object.keys(activeRooms);
-        console.log(Object.keys(activeRooms));
-        console.log(Object.keys(activeRooms).length)
+
+        if (activeRoomsKeys.length > 0) {
+            setTileButtons();
+        } else {
+            getActiveRooms();
+        }
     });
+
 }
 
 function fireUpdate(roomName) {
@@ -204,24 +209,31 @@ function setConnectedRef() {
 }
 
 
-// var connectedNumber; //temporary number
-// function pullConnectedNumber() {
-//     return firebase.database().ref("Rooms/" + room).once('value').then(function(snapshot) {
-//         //   console.log("pulling connectedNumber...")
-//         connectedNumber = snapshot.val().connectedUsers;
-//         console.log(connectedNumber);
-//         setTileButtons();
-//         setConnectedRef();
-//     });
-//     connectedNumber.on('value', function(snapshot) {
+var connectedNumber; //temporary number
+function pullConnectedNumber() {
+    return firebase.database().ref("Rooms/" + room).once('value').then(function(snapshot) {
+        //   console.log("pulling connectedNumber...")
+        connectedNumber = snapshot.val().connectedUsers;
+        console.log(connectedNumber);
+        setConnectedRef();
+    });
+    connectedNumber.on('value', function(snapshot) {
 
-//     })
-// }
-// //sets the items in the join room tiles
-// function setTileButtons() {
-//     for (i = 0; i < activeRoomsKeys.length; i++) {
-//         var workingLiveTile = document.getElementsByClassName("tileButtons")[i];
-//         workingLiveTile.innerText = activeRoomsKeys[i];
-//     }
-//     return "success";
-// }
+    })
+}
+//sets the items in the join room tiles
+function setTileButtons() {
+    for (i = 0; i < activeRoomsKeys.length; i++) {
+        var workingLiveTile = document.getElementsByClassName("tileButtons")[i];
+        workingLiveTile.innerText = activeRoomsKeys[i];
+    }
+    return "success";
+}
+
+
+//runs whenever a button in the JoinRoom page is clicked. Passes button index # onclick
+function roomTileClicked(roomNumber) {
+    roomName = activeRoomsKeys[roomNumber];
+    fireGet(roomName);
+    appendTemplate('viewingRoom');
+}

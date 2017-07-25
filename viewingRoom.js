@@ -175,7 +175,13 @@ function syncRoom(roomName, privelege) {
     if (!made) {
         make(roomName);
     }
+<<<<<<< HEAD
     // pullConnectedNumber();
+=======
+
+    pullConnectedNumber();
+
+>>>>>>> 189ded8752db12104b9af5849e4c306c6b9ccc62
 }
 
 function fireCheck(room) {
