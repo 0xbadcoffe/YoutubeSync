@@ -1,0 +1,15 @@
+    #homeRoomBox {
+        height: 300px;
+        width: 300px;
+        background-color: rgba(255, 255, 255, 0.08);
+        margin: 30px auto 0px;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .homebuttons {
+        margin-top: 20px;
+        margin-left: 50px;
+        margin-right: 50px;
+        margin-bottom: 0px;
+    }
