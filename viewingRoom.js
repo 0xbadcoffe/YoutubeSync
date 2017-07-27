@@ -9,6 +9,9 @@ var player;
 var videoId = '';
 var room = '';
 
+var playlist = new Array();
+var made = false;
+
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('iframe', {
         videoId: videoId,
@@ -214,10 +217,9 @@ function updateTable() {
 function onPlayerStateChange(event) {
     onVideoEnd(event.data);
 }
-var made = false;
+
 
 function PlaylistItem(name, id) {
     this.name = name;
     this.id = id;
 }
-var playlist = new Array();

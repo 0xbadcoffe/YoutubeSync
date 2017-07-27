@@ -12,11 +12,11 @@ function firebaseInit() {
 }
 
 var appHistory = [];
-
-
-
-//global vars
 var body = document.getElementsByTagName('body')[0];
+var vidId = 0;
+var time = 0;
+var counterExists = false;
+
 
 
 // Loads a local HTML file and injects the HTML into the container element
@@ -134,8 +134,6 @@ function fireSet(roomName, ID, start) {
     });
 }
 
-var vidId = 0;
-var time = 0;
 
 function fireGet(roomName) {
     return firebase.database().ref("Rooms/" + roomName).once('value').then(function(snapshot) {
@@ -176,9 +174,6 @@ function fireUpdate(roomName) {
 
 
 }
-
-
-var counterExists = false;
 
 function createConnectedElement() {
     var body = document.getElementsByTagName("body")[0];
