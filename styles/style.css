@@ -23,7 +23,7 @@ table {
     margin-top: 0px;
 }
 
-.buttons1 {
+.buttons {
     position: relative;
     border: none;
     color: rgb(0, 0, 0);
@@ -36,7 +36,7 @@ table {
     -webkit-transition: background-color .3s, font-weight .3s, color .7s;
 }
 
-.buttons1:hover {
+.buttons:hover {
     font-weight: 900;
     background-color: rgba(255, 255, 255, 0.6);
     color: white;
@@ -49,7 +49,7 @@ table {
     margin-top: 0px;
 }
 
-.inputs1 {
+.inputs {
     background: rgba(255, 255, 255, 0.6);
     border-color: rgba(0, 0, 0, 0.0);
     font-size: 25px;
