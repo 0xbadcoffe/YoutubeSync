@@ -52,9 +52,9 @@ function make(roomName) {
         button2.innerText = "Add";
         button2.style.display = 'none';
         cancel.style.display = 'none';
-        newButton.className = "buttons1";
-        button2.className = 'buttons1';
-        cancel.className = 'buttons1';
+        newButton.className = "buttons";
+        button2.className = 'buttons';
+        cancel.className = 'buttons';
         cancel.style.margin = '20px';
         newButton.style.margin = '20px';
         button2.style.margin = '20px';
@@ -138,8 +138,8 @@ function makeTable() {
     idinput.placeholder = "video id";
     nameinput.id = "nameinput";
     idinput.id = "idinput";
-    nameinput.className = 'inputs1';
-    idinput.className = 'inputs1';
+    nameinput.className = 'inputs';
+    idinput.className = 'inputs';
     newrow = document.createElement('tr');
     var namecell = document.createElement('td');
     var idcell = document.createElement('td');
