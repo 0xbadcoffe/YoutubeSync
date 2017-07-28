@@ -22,7 +22,7 @@ var counterExists = false;
 // Loads a local HTML file and injects the HTML into the container element
 function appendTemplate(templateName) {
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', `${templateName}.html`, true);
+    xhr.open('GET', `templates/${templateName}.html`, true);
     xhr.onreadystatechange = function() {
         if (this.readyState !== 4) {
             //console.log('error', this.error);

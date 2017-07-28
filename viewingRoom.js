@@ -55,9 +55,9 @@ function make(roomName) {
         button2.innerText = "Add";
         button2.style.display = 'none';
         cancel.style.display = 'none';
-        newButton.className = "buttons1";
-        button2.className = 'buttons1';
-        cancel.className = 'buttons1';
+        newButton.className = "buttons";
+        button2.className = 'buttons';
+        cancel.className = 'buttons';
         cancel.style.margin = '20px';
         newButton.style.margin = '20px';
         button2.style.margin = '20px';
@@ -65,7 +65,6 @@ function make(roomName) {
         var container = document.createElement('div');
         container.insertBefore(newButton, container.lastChild);
         container.insertBefore(cancel, container.lastChild);
-
         container.insertBefore(button2, container.lastChild);
         container.id = "bar"
         ytPlayer.parentElement.insertBefore(container, ytPlayer.parentElement.lastChild);
@@ -76,10 +75,10 @@ function make(roomName) {
     //Shows the forms and the buttons needed
     if (adminprivelege) {
         newButton.addEventListener("click", () => {
-            document.getElementById('addToPlaylist').style.display = 'none';
-            document.getElementById('add').style.display = 'inline-block';
-            document.getElementById('cancel').style.display = 'inline-block';
-            document.getElementById('forms').style.display = 'table-row';
+            newButton.style.display = 'none';
+            button2.style.display = 'inline-block';
+            cancel.style.display = 'inline-block';
+            newrow.style.display = 'table-row';
         });
     }
     if (adminprivelege) {
@@ -91,10 +90,10 @@ function make(roomName) {
                 alert("Please make sure that both the name and ID fields are completed");
                 return;
             } else {
-                document.getElementById('addToPlaylist').style.display = 'inline-block';
-                document.getElementById('add').style.display = 'none';
-                document.getElementById('forms').style.display = 'none';
-                document.getElementById('cancel').style.display = 'none';
+                newButton.style.display = 'inline-block';
+                button2.style.display = 'none';
+                newrow.style.display = 'none';
+                cancel.style.display = 'none';
                 document.getElementById('nameinput').value = '';
                 document.getElementById('idinput').value = '';
                 var temp = new PlaylistItem(name, id);
@@ -107,10 +106,10 @@ function make(roomName) {
     if (adminprivelege) {
         //event listener for cancel button
         cancel.addEventListener("click", () => {
-            document.getElementById('addToPlaylist').style.display = 'inline-block';
-            document.getElementById('add').style.display = 'none';
-            document.getElementById('forms').style.display = 'none';
-            document.getElementById('cancel').style.display = 'none';
+            newButton.style.display = 'inline-block';
+            button2.style.display = 'none';
+            newrow.style.display = 'none';
+            cancel.style.display = 'none';
             document.getElementById('nameinput').value = '';
             document.getElementById('idinput').value = '';
         });
@@ -120,8 +119,9 @@ function make(roomName) {
 }
 
 function makeTable() {
-    if (document.getElementsByTagName('table').length == 1) {
-        document.getElementsByTagName('table')[0].parentElement.removeChild(document.getElementsByTagName('table')[0]);
+    var listTables = document.getElementsByTagName('table');
+    if (listTables.length == 1) {
+        listTables[0].parentElement.removeChild(listTables[0]);
     }
     var ytPlayer = document.getElementById('iframe');
     var table = document.createElement("table");
@@ -141,8 +141,8 @@ function makeTable() {
     idinput.placeholder = "video id";
     nameinput.id = "nameinput";
     idinput.id = "idinput";
-    nameinput.className = 'inputs1';
-    idinput.className = 'inputs1';
+    nameinput.className = 'inputs';
+    idinput.className = 'inputs';
     newrow = document.createElement('tr');
     var namecell = document.createElement('td');
     var idcell = document.createElement('td');
@@ -170,7 +170,6 @@ function syncRoom(roomName, privelege) {
     document.getElementById('iframe').style.display = 'block';
     player.playVideo();
     var ytPlayer = document.getElementById("iframe");
-    var body = document.getElementsByTagName("body")[0];
     if (document.getElementById("roomTitle") == null) {
         var roomTitle = document.createElement("h2");
         roomTitle.innerText = "Room: " + roomName;
@@ -180,9 +179,7 @@ function syncRoom(roomName, privelege) {
     if (!made) {
         make(roomName);
     }
-
     pullConnectedNumber();
-
 }
 
 function fireCheck(room) {
